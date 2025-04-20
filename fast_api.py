@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from open_f1_calls import getDrivers
+from open_f1_calls import *
 
 app = FastAPI()
 
@@ -7,9 +7,22 @@ app = FastAPI()
 async def root():
     return {"message": "Send to the cleared out dashboard."}
 
-@app.get("/getResults")
-async def read_item(year: int = 0, driver_number: int = 1, track = '', session_key: int = 0 ):
-    return getDrivers(int(driver_number), int(session_key))
+@app.get("/getMeetings")
+async def read_item(year: int = 0 ):
+    return getMeetings(int(year))
+
+@app.get("/getDrivers")
+async def read_item(session_key: int = 0 ):
+    return getDrivers(int(session_key))
+
+@app.get("/getCarData")
+async def read_item(driver_number: int = 1, session_key: int = 0 ):
+    return getCarData([
+        {
+            'driver_number': int(driver_number),
+            'session_key' : int(session_key)
+        }
+    ])
 
 """ 
     Order of function calls
