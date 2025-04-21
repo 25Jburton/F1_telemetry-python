@@ -1,0 +1,44 @@
+.App-header, .App-footer {
+    background-color: #282c34;
+    min-height: 10vh;
+    display: flex;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.nav-wrapper {
+    margin: 1rem;
+    display: flex;
+    max-height: 10vh;
+    width: 100%;
+}
+
+.logo-img {
+    width: 10%;
+}
+
+.nav-title, .nav-btns {
+    padding: 1rem;
+}
+
+a{
+    margin: 1rem;
+}
+
+.App-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #282c34;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    font-size: calc(10px + 0.5vmin);
+    color: white;
+}
+
+.footer-content {
+    margin: 3rem;
+}
