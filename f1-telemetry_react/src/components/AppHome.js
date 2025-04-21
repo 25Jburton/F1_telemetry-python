@@ -9,7 +9,7 @@ function AppHome() {
     <div>
       <AppHeader />
       <div className="App">
-        <main className='m-3'>
+        <main className='pb-5 mb-5'>
           <SelectDropdowns />
         </main>
       </div>
