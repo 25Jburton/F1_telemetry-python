@@ -1,7 +1,18 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from open_f1_calls import *
 
 app = FastAPI()
+
+# Enable CORS to allow requests from the React app (running on a different port)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # React's default port
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 """ 
     Order of function calls
     - Get the year (Pass to the meetings endpoint to get valid keys)

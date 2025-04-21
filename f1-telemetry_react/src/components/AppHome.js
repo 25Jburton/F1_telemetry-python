@@ -1,6 +1,6 @@
-import logo from '../assets/logo.svg';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
+import SelectDropdowns from './SelectDropdowns'
 import '../css/HeaderFooter.css';
 import '../css/App.css';
 
@@ -9,9 +9,8 @@ function AppHome() {
     <div>
       <AppHeader />
       <div className="App">
-        <main>
-          Application Dashboard!
-          <img src={logo} className="App-logo" alt="logo" />
+        <main className='m-3'>
+          <SelectDropdowns />
         </main>
       </div>
       <AppFooter />
