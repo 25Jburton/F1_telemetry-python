@@ -1,5 +1,5 @@
 # F1_telemetry-python
-python application to retrieve F1_telemetry data. Retrieval of imported data via api endpoints with fastAPI
+python application to retrieve F1_telemetry data. Retrieval of imported data via api endpoints with fastAPI from https://openf1.org/
 
 # Required
 - python 3.10 +

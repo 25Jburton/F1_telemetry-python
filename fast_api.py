@@ -2,7 +2,19 @@ from fastapi import FastAPI
 from open_f1_calls import *
 
 app = FastAPI()
+""" 
+    Order of function calls
+    - Get the year (Pass to the meetings endpoint to get valid keys)
+    return our valid meeting_name(GP), circuit_key, country_key
 
+    - Get the location name (meeting_name(GP) selection)
+    (call the sessions endpoint passing country_key & year )
+    return our valid session_type/session_name
+    return our valid date range for the session
+
+    - Call the drivers endpoint with our session_key selection
+    return our valid driver_number values
+"""
 @app.get("/")
 async def root():
     return {"message": "Send to the cleared out dashboard."}
@@ -25,26 +37,40 @@ async def read_item(session_key: int = 0, driver_number: int = 0):
 
 @app.get("/getCarData")
 async def read_item(driver_number: int = 0, session_key: int = 0 ):
-    return getCarData([
-        {
-            'driver_number': int(driver_number),
-            'session_key' : int(session_key)
-        }
-    ])
+    return getCarData(int(session_key), int(driver_number))
 
+@app.get("/getSessionIntervals")
+async def read_item(driver_number: int = 0, session_key: int = 0 ):
+    return getSessionIntervals(int(session_key), int(driver_number))
 
+@app.get("/getSessionLaps")
+async def read_item(driver_number: int = 0, session_key: int = 0, lap_number: int = 0):
+    return getSessionLaps(int(session_key), int(driver_number), int(lap_number))
 
+@app.get("/getSessionLocations")
+async def read_item(driver_number: int = 0, session_key: int = 0 ):
+    return getSessionLocations(int(session_key), int(driver_number))
 
-""" 
-    Order of function calls
-    - Get the year (Pass to the meetings endpoint to get valid keys)
-    return our valid meeting_name(GP), circuit_key, country_key
+@app.get("/getSessionPitStops")
+async def read_item(driver_number: int = 0, session_key: int = 0 ):
+    return getSessionPitStops(int(session_key), int(driver_number))
 
-    - Get the location name (meeting_name(GP) selection)
-    (call the sessions endpoint passing country_key & year )
-    return our valid session_type/session_name
-    return our valid date range for the session
+@app.get("/getSessionPositions")
+async def read_item(driver_number: int = 0, session_key: int = 0 ):
+    return getSessionPositions(int(session_key), int(driver_number))
 
-    - Call the drivers endpoint with our session_key selection
-    return our valid driver_number values
-"""
+@app.get("/getSessionRaceControl")
+async def read_item(driver_number: int = 0, session_key: int = 0 ):
+    return getSessionRaceControl(int(session_key), int(driver_number))
+
+@app.get("/getSessionStints")
+async def read_item(driver_number: int = 0, session_key: int = 0 ):
+    return getSessionStints(int(session_key), int(driver_number))
+
+@app.get("/getSessionTeamRadio")
+async def read_item(driver_number: int = 0, session_key: int = 0 ):
+    return getSessionTeamRadio(int(session_key), int(driver_number))
+
+@app.get("/getSessionWeather")
+async def read_item(session_key: int = 0):
+    return getSessionWeather(int(session_key))
