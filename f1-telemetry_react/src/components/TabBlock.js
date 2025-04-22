@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import WeatherBlock from './WeatherBlock';
 
 const Tab = ({ label, onClick, active }) => (
-  <button className={active ? 'active-tab m-3' : 'm-3'} onClick={onClick}>
+  <button className={active ? 'active-tab m-3 btn btn-primary btn-lg' : 'm-3 btn btn-secondary btn-md'} onClick={onClick}>
     {label}
   </button>
 );
 
 const TabPanel = ({ children }) => (
-  <div className="tab-panel">
+  <div className="tab-panel mb-5">
     {children}
   </div>
 );
@@ -22,7 +22,7 @@ const Tabs = ({ children }) => {
 
   return (
     <div className="tabs">
-      <div className="tab-list">
+      <div className="tab-list row">
         {children.map((child) => (
           <Tab
             key={child.props.label}
@@ -46,7 +46,7 @@ const Tabs = ({ children }) => {
 
 const TabBlock = ({sessionValue}) => {
   return (
-    <Tabs disabled={!sessionValue}>
+    <Tabs>
       <TabPanel label="Laps">
         <p>getSessionLaps</p>
         <p>getSessionPositions</p>

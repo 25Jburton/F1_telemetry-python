@@ -1,0 +1,8 @@
+.main-drop-down {
+    border-radius: 15px;
+}
+
+.tabs{
+    display: flex;
+    height: 225px;
+}

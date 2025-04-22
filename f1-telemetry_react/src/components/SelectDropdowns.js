@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TabBlock from './TabBlock'
+import '../css/DropDown.css';
 
 function SelectDropdowns() {
     const [circuit, setCircuit] = useState([]);
@@ -55,34 +56,36 @@ function SelectDropdowns() {
     };
 
     return (
-        <div className='card m-5'>
-            <select className='main-drop-down m-3' value={yearValue} onChange={handleSelectChangeYear}>
-                <option value="" disabled>Select a Year</option>
-                <option value='2023' key='1'>2023</option>
-                <option value='2024' key='2'>2024</option>
-                <option value='2025' key='3'>2025</option>
-            </select>
+        <div>
+            <div className='row'>
+                <select className='main-drop-down m-3 col-1' value={yearValue} onChange={handleSelectChangeYear}>
+                    <option value="" disabled>Select a Year</option>
+                    <option value='2023' key='1'>2023</option>
+                    <option value='2024' key='2'>2024</option>
+                    <option value='2025' key='3'>2025</option>
+                </select>
 
-            <select className='main-drop-down m-3' disabled={!yearValue} onChange={handleSelectChangeCircuit}>
-                <option value="" disabled>Select a Circuit</option>
-                {circuit.map((item) => (
-                    <option value={item.circuit_key} data-meeting-key={item.meeting_key}>{item.circuit_short_name} | {item.meeting_name}</option>
-                ))}
-            </select>
+                <select className='main-drop-down m-3 col-4' disabled={!yearValue} onChange={handleSelectChangeCircuit}>
+                    <option value="" disabled>Select a Circuit</option>
+                    {circuit.map((item) => (
+                        <option value={item.circuit_key} data-meeting-key={item.meeting_key}>{item.circuit_short_name} | {item.meeting_name}</option>
+                    ))}
+                </select>
 
-            <select className='main-drop-down m-3' disabled={!circuitValue} onChange={handleSelectChangeSession}>
-                <option value="" disabled>Select a Session</option>
-                {session.map((item) => (
-                    <option value={item.session_key}>{item.session_name} | {item.session_type}</option>
-                ))}
-            </select>
+                <select className='main-drop-down m-3 col-3' disabled={!circuitValue} onChange={handleSelectChangeSession}>
+                    <option value="" disabled>Select a Session</option>
+                    {session.map((item) => (
+                        <option value={item.session_key}>{item.session_name} | {item.session_type}</option>
+                    ))}
+                </select>
 
-            <select className='main-drop-down m-3' disabled={!sessionValue}>
-                <option value="" disabled>Select a Driver</option>
-                {driver.map((item) => (
-                    <option value={item.driver_number}>{item.driver_number} - {item.full_name}</option>
-                ))}
-            </select>
+                <select className='main-drop-down m-3 col-3' disabled={!sessionValue}>
+                    <option value="" disabled>Select a Driver</option>
+                    {driver.map((item) => (
+                        <option value={item.driver_number}>{item.driver_number} - {item.full_name}</option>
+                    ))}
+                </select>
+            </div>
             <TabBlock sessionValue={sessionValue} />
         </div>
     );
