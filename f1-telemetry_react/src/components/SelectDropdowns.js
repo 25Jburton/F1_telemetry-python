@@ -9,6 +9,8 @@ function SelectDropdowns() {
     const [yearValue, setYearValue] = useState('');
     const [circuitValue, setCircuitValue] = useState('');
     const [sessionValue, setSessionValue] = useState('');
+    const [driverValue, setDriverValue] = useState('');
+    const [driverNameValue, setDriverNameValue] = useState('');
 
     useEffect(() => {
         if (yearValue) {
@@ -32,7 +34,7 @@ function SelectDropdowns() {
                 .then(response => response.json())
                 .then(data => setDriver(data));
         }
-    }, [yearValue,circuitValue, sessionValue]);
+    }, [yearValue, circuitValue, sessionValue]);
 
     const handleSelectChangeYear = (event) => {
         setYearValue(event.target.value);
@@ -41,18 +43,26 @@ function SelectDropdowns() {
         setSession([]);
         setSessionValue('');
         setDriver([]);
+        setDriverNameValue('');
     };
 
     const handleSelectChangeCircuit = (event) => {
         setCircuitValue(event.target.value);
         setSession([]);
         setSessionValue('');
-        setDriver([]); 
+        setDriver([]);
+        setDriverNameValue(''); 
     };
 
     const handleSelectChangeSession = (event) => {
         setSessionValue(event.target.value);
         setDriver([]); 
+        setDriverValue('');
+        setDriverNameValue('');
+    };
+
+    const handleSelectChangeDriver = (event) => {
+        setDriverValue(event.target.value);
     };
 
     return (
@@ -79,14 +89,14 @@ function SelectDropdowns() {
                     ))}
                 </select>
 
-                <select className='main-drop-down m-3 col-3' disabled={!sessionValue}>
+                <select className='main-drop-down m-3 col-3' disabled={!sessionValue} onChange={handleSelectChangeDriver}>
                     <option value="" disabled>Select a Driver</option>
                     {driver.map((item) => (
-                        <option value={item.driver_number}>{item.driver_number} - {item.full_name}</option>
+                        <option value={item.driver_number} data-driver={item.full_name}>{item.driver_number} - {item.full_name}</option>
                     ))}
                 </select>
             </div>
-            <TabBlock sessionValue={sessionValue} />
+            <TabBlock sessionValue={sessionValue} driverValue={driverValue} />
         </div>
     );
 }
