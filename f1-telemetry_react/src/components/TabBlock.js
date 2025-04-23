@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import WeatherBlock from './WeatherBlock';
 import RadioBlock from './RadioBlock';
+import PitBlock from './PitBlock'
 
 const Tab = ({ label, onClick, active }) => (
   <button className={active ? 'active-tab m-3 btn btn-primary btn-lg' : 'm-3 btn btn-secondary btn-md'} onClick={onClick}>
@@ -53,7 +54,7 @@ const TabBlock = ({sessionValue, driverValue}) => {
         <p>getSessionPositions</p>
       </TabPanel>
       <TabPanel label="Pit Stops">
-        <p>getSessionPitStops</p>
+        <PitBlock sessionValue={sessionValue} driverValue={driverValue} />
       </TabPanel>
       <TabPanel label="Radio / Race Control">
         <RadioBlock sessionValue={sessionValue} driverValue={driverValue} />

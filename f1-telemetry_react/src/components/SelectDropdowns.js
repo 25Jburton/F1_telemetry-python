@@ -10,7 +10,6 @@ function SelectDropdowns() {
     const [circuitValue, setCircuitValue] = useState('');
     const [sessionValue, setSessionValue] = useState('');
     const [driverValue, setDriverValue] = useState('');
-    const [driverNameValue, setDriverNameValue] = useState('');
 
     useEffect(() => {
         if (yearValue) {
@@ -43,7 +42,6 @@ function SelectDropdowns() {
         setSession([]);
         setSessionValue('');
         setDriver([]);
-        setDriverNameValue('');
     };
 
     const handleSelectChangeCircuit = (event) => {
@@ -51,14 +49,12 @@ function SelectDropdowns() {
         setSession([]);
         setSessionValue('');
         setDriver([]);
-        setDriverNameValue(''); 
     };
 
     const handleSelectChangeSession = (event) => {
         setSessionValue(event.target.value);
         setDriver([]); 
         setDriverValue('');
-        setDriverNameValue('');
     };
 
     const handleSelectChangeDriver = (event) => {
@@ -91,7 +87,7 @@ function SelectDropdowns() {
             <select className='main-drop-down m-3 col-3' disabled={!sessionValue} onChange={handleSelectChangeDriver}>
                 <option value="">Select a Driver</option>
                 {driver.map((item) => (
-                    <option value={item.driver_number} data-driver={item.full_name}>{item.driver_number} - {item.full_name}</option>
+                    <option value={item.driver_number}>{item.driver_number} - {item.full_name}</option>
                 ))}
             </select>
             <TabBlock sessionValue={sessionValue} driverValue={driverValue} />

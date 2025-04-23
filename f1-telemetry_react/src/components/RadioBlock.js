@@ -25,26 +25,6 @@ function RadioBlock({sessionValue, driverValue}) {
         }
     }, [sessionValue, driverValue]);
 
-    const formatDate = (dateString, format = "YYYY-MM-DD") => {
-        const date = new Date(dateString);
-      
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
-        const year = date.getFullYear();
-      
-        const formatMap = {
-          'YYYY-MM-DD': `${year}-${month}-${day}`,
-          'DD-MM-YYYY': `${day}-${month}-${year}`,
-          'MM-DD-YYYY': `${month}-${day}-${year}`,
-          'YYYY/MM/DD': `${year}/${month}/${day}`,
-          'DD/MM/YYYY': `${day}/${month}/${year}`,
-          'MM/DD/YYYY': `${month}/${day}/${year}`,
-          // Add other formats as needed
-        };
-      
-        return formatMap[format] || "Invalid Format";
-    };
-
     const formatTime = (dateString) => {
         let formatedDate = dateString.split("T");
         formatedDate = formatedDate[1].split(".");
