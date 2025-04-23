@@ -9,7 +9,7 @@ const Tab = ({ label, onClick, active }) => (
 );
 
 const TabPanel = ({ children }) => (
-  <div className="tab-panel mb-5">
+  <div className="tab-panel">
     {children}
   </div>
 );
@@ -33,7 +33,7 @@ const Tabs = ({ children }) => {
           />
         ))}
       </div>
-      <div className="tab-content">
+      <div className="tab-content w-100">
         {children.map((child) => {
           if (child.props.label === activeTab) {
             return <TabPanel key={child.props.label}>{child.props.children}</TabPanel>;

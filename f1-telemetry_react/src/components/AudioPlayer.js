@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AudioPlayer({ src }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -16,7 +17,7 @@ function AudioPlayer({ src }) {
   return (
     <div>
       <audio ref={audioRef} src={src} />
-      <button onClick={togglePlay}>{isPlaying ? 'Pause' : 'Play'}</button>
+      <button onClick={togglePlay} className='btn btn-secondary btn-lg'>{isPlaying ? 'Pause' : 'Play'}</button>
     </div>
   );
 }

@@ -1,1 +1,17 @@
 /* Radio & Race Control Tab */
+
+.audio-img {
+    height: 75px;
+    margin: 2rem;
+}
+
+.flag-img{
+    margin: 2rem;
+    height: 225px;
+}
+
+.audio-card, .race-control-card {
+    overflow-y:auto;
+    margin: 2rem;
+    font-weight: bold;
+}

@@ -4,5 +4,11 @@
 }
 
 .data-card{
-    margin-bottom: 10rem;
+    height: 65vh;
+    overflow-y: auto;
+}
+
+.weather-card {
+    margin: 2rem;
+    font-weight: bold;
 }

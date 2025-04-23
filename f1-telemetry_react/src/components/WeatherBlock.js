@@ -50,9 +50,8 @@ function WeatherBlock({sessionValue}) {
     return (
     <div className="card bg-light">
         <div className="card-body data-card">
-            <h1 className='text-dark font-weight-bold'>Start of Session Weather data</h1>
             <div className='row m-3 d-flex justify-content-center'>
-                <div className='card m-2 bg-dark text-light font-weight-bold col-lg-5 col-md-12'>
+                <div className='weather-card card bg-dark text-light col-lg-5 col-md-12'>
                     <div className='card-header'>
                         <h1>
                             Air Temperature
@@ -64,7 +63,7 @@ function WeatherBlock({sessionValue}) {
                     </div>
                 </div>
 
-                <div className='card m-2 bg-dark text-light font-weight-bold col-lg-5 col-md-12'>
+                <div className='weather-card card bg-dark text-light col-lg-5 col-md-12'>
                     <div className='card-header'>
                         <h1>
                             Track Temperature
@@ -76,7 +75,7 @@ function WeatherBlock({sessionValue}) {
                     </div>
                 </div>
 
-                <div className='card m-2 bg-dark text-light font-weight-bold col-lg-5 col-md-12'>
+                <div className='weather-card card bg-dark text-light col-lg-5 col-md-12'>
                     <div className='card-header'>
                         <h1>
                             Wind Direction
@@ -88,7 +87,7 @@ function WeatherBlock({sessionValue}) {
                     </div>
                 </div>
 
-                <div className='card m-2 bg-dark text-light font-weight-bold col-lg-5 col-md-12'>
+                <div className='weather-card card bg-dark text-light col-lg-5 col-md-12'>
                     <div className='card-header'>
                         <h1>
                         Wind Speed
@@ -100,7 +99,7 @@ function WeatherBlock({sessionValue}) {
                     </div>
                 </div>
 
-                <div className='card m-2 bg-dark text-light font-weight-bold col-lg-5 col-md-12'>
+                <div className='weather-card card bg-dark text-light col-lg-5 col-md-12'>
                     <div className='card-header'>
                         <h1>
                         {weather.rainfall ? 'Rainfall' : 'Sunny' }
