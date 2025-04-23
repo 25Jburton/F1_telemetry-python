@@ -191,6 +191,38 @@ def getSessionWeather(session_key):
     weather_data = json.loads(response.read().decode('utf-8'))
     return weather_data
 
+# Pit & Position
+def getSessionLapAndPosition(session_key, driver_number=0):
+    """
+        session_key driver_number lap_number
+        Provides detailed information about individual laps.
+    """
+    full_data = []
+    
+    pit_data = getSessionPitStops(session_key, driver_number)
+    full_data.append({'Pit Data': pit_data})
+
+    position_data = getSessionPositions(session_key, driver_number)
+    if position_data[0]:
+        full_data.append({'Position Data': position_data[0]})
+
+    lap_data = getSessionLaps(session_key, driver_number)
+    if lap_data[0]:
+        full_data.append({'Lap Data': lap_data[0]})
+
+    combined = []
+    for lap_item in lap_data:
+        target_date = lap_item['date_start']
+        for position_item in position_data:
+            check_date = position_item['date']
+            if check_date == target_date:
+                merged = {**position_item, **lap_item}
+                combined.append(merged)
+    return combined
+                
+
+
+
 # Combined calls for start of session
 def getStartOfSessionDataByDriver(session_key, driver_number):
     """ 

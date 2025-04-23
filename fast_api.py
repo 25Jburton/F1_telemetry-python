@@ -85,3 +85,7 @@ async def read_item(driver_number: int = 0, session_key: int = 0 ):
 @app.get("/getSessionWeather")
 async def read_item(session_key: int = 0):
     return getSessionWeather(int(session_key))
+
+@app.get("/getSessionLapAndPosition")
+async def read_item(driver_number: int = 0, session_key: int = 0 ):
+    return getSessionLapAndPosition(int(session_key), int(driver_number))
