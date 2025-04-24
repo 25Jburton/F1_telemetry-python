@@ -15,17 +15,16 @@ function LapBlock({sessionValue, driverValue}) {
             fetch(`http://localhost:8000/getSessionLapAndPosition?session_key=${sessionValue}&driver_number=${driverValue}`)
                 .then(response => response.json())
                 .then(data => setLapCalls(data));
+        }
+    }, [sessionValue, driverValue]);
     
+    useEffect(() => {
+        if (sessionValue && driverValue) {
             fetch(`http://localhost:8000/getSessionPositions?session_key=${sessionValue}&driver_number=${driverValue}`)
                 .then(response => response.json())
                 .then(data => setPositionCalls(data[0]));
         }
     }, [sessionValue, driverValue]);
-
-    // const [position, setPosition] = useState();
-    // if(positionCalls.position){
-    //     setPosition(positionCalls.position);
-    // }
     
     function getSegmentsSector(item){
         let result = ''
@@ -70,12 +69,11 @@ function LapBlock({sessionValue, driverValue}) {
                             <div className='row mb-3'>
                                 <div className='col-4'>
                                     <img className='lap-img' alt='lap position' src={grid} />
-                                    <h3>
-                                        {/* {!item.position ? '': () => setPosition(item.position)} */}
-                                        Lap # {item.lap_number} <br></br>
-                                        {'Starting Position '+positionCalls.position} <br></br>
-                                        {/* {'Lap Position '+ position} */}
-                                    </h3>
+                                    <h3>Lap # {item.lap_number}</h3> <br></br>
+                                    <div className='row d-flex justify-content-center'>
+                                        Starting Position {positionCalls.position}<br></br>
+                                        {item.position ? 'New Position '+item.position: ''}
+                                    </div>
                                 </div>
                                 <div className='col-4'>
                                     <img className='lap-img' alt='lap stops' src={stop_watch} />
@@ -92,19 +90,19 @@ function LapBlock({sessionValue, driverValue}) {
                                 </div>
                             </div>
                             <div className='row'>
-                                <div className='col-3'>
+                                <div className='col-4'>
                                     Sector #1 - {item.duration_sector_1}<br></br>
                                     {item.segments_sector_1.map((item) => (
                                         <p>{getSegmentsSector(item)}</p>
                                     ))}
                                 </div>
-                                <div className='col-3'>
+                                <div className='col-4'>
                                     Sector #2 - {item.duration_sector_2} <br></br>
                                     {item.segments_sector_2.map((item) => (
                                         <p>{getSegmentsSector(item)}</p>
                                     ))}
                                 </div>
-                                <div className='col-3'>
+                                <div className='col-4'>
                                     Sector #3 - {item.duration_sector_3} <br></br>
                                     {item.segments_sector_3.map((item) => (
                                         <p>{getSegmentsSector(item)}</p>
