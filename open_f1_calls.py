@@ -210,15 +210,28 @@ def getSessionLapAndPosition(session_key, driver_number=0):
     if lap_data[0]:
         full_data.append({'Lap Data': lap_data[0]})
 
-    combined = []
+    list_of_dicts = []
+    # Loop the laps and Positions to merge the records
     for lap_item in lap_data:
         target_date = lap_item['date_start']
         for position_item in position_data:
             check_date = position_item['date']
             if check_date == target_date:
                 merged = {**position_item, **lap_item}
-                combined.append(merged)
-    return combined
+                list_of_dicts.append(merged)
+            elif lap_item not in list_of_dicts:
+                list_of_dicts.append(lap_item)
+            
+    # Make sure we only have one record per lap
+    combinedDicts = {}
+    for dictionary in list_of_dicts:
+        match_value = dictionary.get('lap_number')
+        if match_value is not None:
+            if match_value not in combinedDicts:
+                combinedDicts[match_value] = dictionary
+            else:
+                combinedDicts[match_value].update(dictionary)
+    return list(combinedDicts.values())
                 
 
 
